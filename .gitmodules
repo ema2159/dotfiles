@@ -1,0 +1,6 @@
+[submodule "nvim"]
+	path = nvim
+	url = git@github.com:ema2159/nvimconfig.git
+[submodule "awesomewm"]
+	path = awesomewm
+	url = git@github.com:ema2159/awesomewmconfig.git
