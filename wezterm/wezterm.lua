@@ -12,8 +12,11 @@ end
 
 -- This is where you actually apply your config choices
 
--- Default program
-config.default_prog = { "C:\\Program Files\\PowerShell\\7\\pwsh.exe", "-l" }
+-- If Windows
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  -- Default program
+  config.default_prog = { "C:\\Program Files\\PowerShell\\7\\pwsh.exe", "-l" }
+end
 
 --------------- Appearance ---------------
 -- Color scheme
@@ -21,7 +24,7 @@ config.color_scheme = "Dracula"
 
 -- Font
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 12.0
+config.font_size = 14.0
 
 -- Tab
 config.hide_tab_bar_if_only_one_tab = true
@@ -39,6 +42,7 @@ config.window_padding = {
 	bottom = 0,
 }
 config.window_decorations = "RESIZE"
+config.window_background_opacity = 0.8
 
 --------------- Keybingings ---------------
 config.disable_default_key_bindings = true
@@ -67,8 +71,10 @@ config.keys = {
 	{ key = "x", mods = KeyModifier, action = act.ActivateCopyMode },
 	{ key = "u", mods = KeyModifier, action = act.CharSelect },
 	{ key = "k", mods = KeyModifier, action = act.ClearScrollback("ScrollbackOnly") },
-	{ key = "+", mods = "CTRL", action = act.IncreaseFontSize },
+	{ key = "=", mods = "CTRL", action = act.IncreaseFontSize },
 	{ key = "-", mods = "CTRL", action = act.DecreaseFontSize },
+	{ key = "c", mods = KeyModifier, action = act.CopyTo("Clipboard") },
+	{ key = "v", mods = KeyModifier, action = act.PasteFrom("Clipboard") },
 }
 
 -- and finally, return the configuration to wezterm
